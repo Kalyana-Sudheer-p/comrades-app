@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name : comrades-app-ingress
+  namespace: default
+spec:
+  rules:
+    - host: comrades-app.in
+      http:
+        paths:
+          - backend:
+              service:
+                name: comrades-app-service
+                port:
+                  number: 80 
+            pathType: Prefix
+            path: /Home/api
+          
+          - backend:
+              service:
+                name: redis-service
+                port:
+                  number: 80 
+            pathType: Prefix
+            path: /Home/redis
+          

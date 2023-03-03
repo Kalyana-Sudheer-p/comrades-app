@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comrades-app-deployment
+    
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: comrades-app-pod
+      labels:
+        app: comrades-app
+    spec:
+      containers:
+        - name: container-1
+          image: docker.io/kalyanasudheer/comrades-app:comrades-app-v1
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+
+  selector:
+      matchLabels:
+        app: comrades-app
+
